@@ -1,6 +1,7 @@
 import * as fs from "fs";
+import * as path from "path";
 
-const directoryPath: string = "./node_modules";
+const directoryPath: string = path.join(".", "node_modules");
 
 function logDirectoriesAndFiles(dir: string): void {
   function listFilesRecursive(currentDir: string, level: number): void {
@@ -8,7 +9,7 @@ function logDirectoriesAndFiles(dir: string): void {
     const space = "    ".repeat(level);
 
     files.forEach((file) => {
-      const filePath: string = `${currentDir}/${file}`;
+      const filePath: string = path.join(currentDir, file);
       const stat = fs.statSync(filePath);
 
       if (stat.isDirectory()) {
